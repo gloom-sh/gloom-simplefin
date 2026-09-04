@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="SimpleFIN">
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B2B3A"/>
+      <stop offset="1" stop-color="#0E1720"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" fill="url(#tile)"/>
+  <!-- A bridge: SimpleFIN Bridge is what hands the data over. -->
+  <path d="M10 40 C10 27 21 19 32 19 C43 19 54 27 54 40" fill="none" stroke="#3FA9F5" stroke-width="4" stroke-linecap="round"/>
+  <path d="M10 40 h44" fill="none" stroke="#3FA9F5" stroke-width="4" stroke-linecap="round"/>
+  <path d="M20 40 V31 M32 40 V25 M44 40 V31" fill="none" stroke="#3FA9F5" stroke-width="2.6" stroke-linecap="round" opacity="0.75"/>
+  <rect x="10" y="45" width="44" height="4" rx="2" fill="#7FD1FF" opacity="0.6"/>
+</svg>
