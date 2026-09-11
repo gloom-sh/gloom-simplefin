@@ -1,0 +1,23 @@
+{
+  "id": "simplefin",
+  "name": "SimpleFIN",
+  "icon": "icon.svg",
+  "tagline": "Read-only investment position sync through SimpleFIN Bridge",
+  "description": "Sync investment accounts and positions from any institution connected to SimpleFIN Bridge. Paste a one-time setup token; Gloomberb claims it, stores the access URL locally, and only ever reads over HTTPS.",
+  "categories": [
+    "broker"
+  ],
+  "targets": [
+    "cli",
+    "tui",
+    "desktop"
+  ],
+  "hosts": [
+    "bridge.simplefin.org",
+    "beta-bridge.simplefin.org"
+  ],
+  "contributes": {
+    "broker": true
+  },
+  "minGloomberb": "0.12.0"
+}
