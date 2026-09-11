@@ -53,6 +53,6 @@ export const simpleFinPluginMeta = {
   name: "SimpleFIN",
   version: "1.0.0",
   description: "Read-only investment position sync through SimpleFIN Bridge.",
-  homepage: "https://github.com/gloom-sh/gloomberb-simplefin",
+  homepage: "https://github.com/gloom-sh/gloom-simplefin",
   toggleable: true,
 } as const;

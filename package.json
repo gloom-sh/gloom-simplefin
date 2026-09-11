@@ -1,5 +1,5 @@
 {
-  "name": "gloomberb-simplefin",
+  "name": "gloom-simplefin",
   "version": "1.0.0",
   "description": "Read-only investment position sync through SimpleFIN Bridge",
   "type": "module",
@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/gloom-sh/gloomberb-simplefin"
+    "url": "https://github.com/gloom-sh/gloom-simplefin"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
