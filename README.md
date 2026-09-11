@@ -1,9 +1,9 @@
-# gloomberb-simplefin
+# gloom-simplefin
 
 Read-only investment position sync through [SimpleFIN Bridge](https://beta-bridge.simplefin.org) for [Gloomberb](https://github.com/gloom-sh/gloomberb).
 
 ```bash
-gloomberb install gloom-sh/gloomberb-simplefin
+gloomberb install gloom-sh/gloom-simplefin
 ```
 
 ## Setup
