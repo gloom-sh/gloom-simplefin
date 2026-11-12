@@ -40,10 +40,26 @@ export function decodeSimpleFinSetupToken(value: string): string {
   }
 }
 
+/**
+ * SimpleFIN Bridge moved to beta-bridge.simplefin.org: the old host answers
+ * every request, the claim and the accounts included, with a redirect to the
+ * new site's home page. Setup tokens and access URLs that name it are read at
+ * the new host, under the same path.
+ */
+const RETIRED_BRIDGE_HOST = "bridge.simplefin.org";
+const BRIDGE_HOST = "beta-bridge.simplefin.org";
+
+export function currentBridgeUrl(url: URL): URL {
+  if (url.hostname.toLowerCase() !== RETIRED_BRIDGE_HOST) return url;
+  const moved = new URL(url.href);
+  moved.hostname = BRIDGE_HOST;
+  return moved;
+}
+
 async function validateSimpleFinUrl(value: string, requireCredentials: boolean): Promise<URL> {
   let url: URL;
   try {
-    url = new URL(value);
+    url = currentBridgeUrl(new URL(value));
   } catch {
     throw new Error("SimpleFIN returned an invalid URL.");
   }
@@ -106,7 +122,10 @@ async function loadAccounts(accessUrl: string, fetchImpl: FetchLike): Promise<un
   url.username = "";
   url.password = "";
   url.pathname = `${url.pathname.replace(/\/$/, "")}/accounts`;
-  url.searchParams.set("balances-only", "1");
+  // Not balances-only: the Bridge then lists every account with no holdings,
+  // and holdings are all this sync reads. Transactions are not wanted, so
+  // they start now, which leaves at most a few.
+  url.searchParams.set("start-date", String(Math.floor(Date.now() / 1000)));
   url.searchParams.set("version", "2");
   const response = await timedFetch(fetchImpl, url, {
     headers: {
