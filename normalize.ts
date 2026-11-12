@@ -34,6 +34,14 @@ function numberValue(...values: unknown[]): number | undefined {
   return undefined;
 }
 
+function positiveNumber(...values: unknown[]): number | undefined {
+  for (const value of values) {
+    const parsed = numberValue(value);
+    if (parsed != null && parsed > 0) return parsed;
+  }
+  return undefined;
+}
+
 function nested(source: UnknownRecord, key: string): UnknownRecord {
   return record(source[key]) ?? {};
 }
@@ -154,7 +162,9 @@ export function normalizeSimpleFinSnapshot(payload: unknown): BrokerPortfolioSna
       const marketValue = numberValue(holding.market_value, holding.marketValue, holding.value);
       if (!symbol || shares == null || shares === 0) continue;
       const costBasis = numberValue(holding.cost_basis, holding.costBasis);
-      const avgCost = numberValue(
+      // Institutions that do not know the price paid send "0.00" for it,
+      // often beside a real total cost: zero is no cost, not a free share.
+      const avgCost = positiveNumber(
         holding.purchase_price,
         holding.average_price,
         holding.average_cost,
